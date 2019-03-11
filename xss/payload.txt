@@ -1,0 +1,3 @@
+"><script>alert("A");</script>
+"><script>alert("B");</script>
+\"><script>alert("C");</script>

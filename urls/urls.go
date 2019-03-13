@@ -9,10 +9,15 @@ import (
 )
 
 // FindURLS function
-func FindURLS(isUrl string) {
-	page, err := Parse(isUrl)
+func FindURLS(isURL string) {
+	if isURL == "" {
+		fmt.Println(Bold(Red("[!] Opps Url Not Found")))
+		fmt.Println(Bold(Green("[+] Example -url='https://google.com' Or check with -h")))
+		return
+	}
+	page, err := Parse(isURL)
 	if err != nil {
-		fmt.Println("Error getting page %s %s\n", isUrl, err)
+		fmt.Println("Error getting page %s %s\n", isURL, err)
 		return
 	}
 	links := pageLinks(nil, page)
@@ -20,7 +25,7 @@ func FindURLS(isUrl string) {
 		fmt.Println("[+] Link Found = ", Bold(Green(link)))
 	}
 
-	fmt.Println("\n")
+	fmt.Println("Javascript :")
 	linksJs := pageJs(nil, page)
 	for _, js := range linksJs {
 		fmt.Println("[+] JS Found = ", Bold(Cyan(js)))

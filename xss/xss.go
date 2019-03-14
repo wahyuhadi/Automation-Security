@@ -26,20 +26,7 @@ func IsCheckXSS(isURL string) {
 }
 
 func IsURLParse(isURL string) {
-	fmt.Println(Bold(Blue("[+] Open Payload from file ..")))
-
-	file, err := os.Open("xss/payload.txt")
-	if err != nil {
-		fmt.Println(Bold(Red("[!] Error When Open xss/payload.txt ")))
-		return
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	var lines []string
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
+	
 
 	u, err := url.Parse(isURL)
 	if err != nil {
@@ -56,6 +43,26 @@ func IsURLParse(isURL string) {
 	domain := u.Hostname()
 	params := u.Query()
 	values, _ := url.ParseQuery(tempUrl.RawQuery)
+	if len(values) == 0 {
+		fmt.Println(Bold(Red("[!] Opps Url Params Not Found")))
+		fmt.Println(Bold(Green("[+] Example -url='https://google.com' Or check with -h")))
+		return
+	}
+	fmt.Println(Bold(Blue("[+] Open Payload from file ..")))
+
+	file, err := os.Open("xss/payload.txt")
+	if err != nil {
+		fmt.Println(Bold(Red("[!] Error When Open xss/payload.txt ")))
+		return
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	var lines []string
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
 	fmt.Println(Bold(Cyan("[+] Parsing Query: ")), Bold(Cyan(domain)), "..")
 
 	for key := range params {
@@ -67,6 +74,7 @@ func IsURLParse(isURL string) {
 		}
 
 	}
+	fmt.Println(Bold(Cyan("[+] Finished !!!")))
 }
 
 // Function for Xss fro parsing html responses

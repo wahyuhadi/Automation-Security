@@ -8,19 +8,27 @@ import (
 	"secu/xss"
 )
 
+type Input struct {
+	IsURL string
+	IsEnum string
+}
+
+// Value Receiver
+func (i Input) call()  {
+	if i.IsEnum == "xss" {
+		xss.IsCheckXSS(i.IsURL)
+	} else if i.IsEnum == "spider" {
+		urls.FindURLS(i.IsURL)	
+    } else {
+		fmt.Println("[+] Opps Something Errors")
+	}
+}
+
+
 func main() {
 	isEnum := flag.String("enum", "not", "Type Vuln")
 	isURL := flag.String("url", "", "A url/endpoint will check")
 	flag.Parse()
-	if *isEnum == "xss" {
-		xss.IsCheckXSS(*isURL)
-	} else if *isEnum == "links" {
-		urls.FindURLS(*isURL)
-	} else if *isEnum == "not" {
-		fmt.Println("Enum:", *isEnum)
-		fmt.Println("URI:", *isURL)
-		fmt.Println("tail:", flag.Args())
-	} else {
-		fmt.Println("[+] Opps Something Errors")
-	}
+	isInput := Input{*isURL, *isEnum}
+	isInput.call()	
 }

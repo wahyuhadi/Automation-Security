@@ -85,7 +85,7 @@ func GetHtmlData(isURL string, isPayload string) {
 	ParsingHtml(responseString, isPayload, isURL)
 }
 
-// Final Function for checking is Xss true
+// Final Function for checking is Xss true 
 func ParsingHtml(isHtml string, isPayload string, isURL string) {
 	if strings.Contains(isHtml, isPayload) {
 		fmt.Println(Bold(Green("[+] XSS Found at : ")), Bold(Green(isURL)))

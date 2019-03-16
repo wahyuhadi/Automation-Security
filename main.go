@@ -2,11 +2,12 @@
 package main
 
 import (
+	"Automation-Security/check"
+	"Automation-Security/cred"
+	"Automation-Security/urls"
+	"Automation-Security/xss"
 	"flag"
 	"fmt"
-	"secu/check"
-	"secu/urls"
-	"secu/xss"
 )
 
 type Input struct {
@@ -22,6 +23,8 @@ func (i Input) call() {
 		urls.FindURLS(i.IsURL)
 	} else if i.IsEnum == "check" {
 		check.IsCheck(i.IsURL)
+	} else if i.IsEnum == "cred" {
+		cred.CheckCred(i.IsURL)
 	} else {
 		fmt.Println("[+] Opps Something Errors")
 	}

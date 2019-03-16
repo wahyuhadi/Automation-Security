@@ -5,6 +5,9 @@ package check
 import (
 	"fmt"
 	"log"
+	"strings"
+
+	. "github.com/logrusorgru/aurora"
 
 	"github.com/gocolly/colly"
 )
@@ -21,7 +24,7 @@ func IsCheck(isURL string) {
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
 		link := e.Attr("href")
 		if link != "" && link != "#" {
-			fmt.Println("[+] Is Parent ", link)
+			fmt.Println(Bold(Cyan("[+] Is Parent ")), Bold(Cyan(link)))
 			IsCheckParentURL(link)
 		}
 
@@ -44,7 +47,8 @@ func IsCheckParentURL(isURL string) {
 	c := colly.NewCollector()
 	c.OnHTML("form[action]", func(e *colly.HTMLElement) {
 		link := e.Attr("action")
-		if link != "" && link != "#" {
+		method := strings.ToUpper(e.Attr("method"))
+		if link != "" && link != "#" && method == "GET" {
 			fmt.Println("[+] Is Child ", link)
 		}
 	})

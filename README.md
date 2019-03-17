@@ -1,8 +1,10 @@
 ## Golang Automation Security Check 
 
 ### Feature
-1.  Xss Detection
+1. Xss Detection in params
 2. Link Spiders
+3. Automation Xss graber
+4. Detection Error configure in server
 
 ### Ho to install
 

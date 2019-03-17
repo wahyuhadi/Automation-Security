@@ -21,7 +21,7 @@ func CheckCred(IsURL string) {
 
 	file, err := os.Open("cred/payload.txt")
 	if err != nil {
-		fmt.Println(Bold(Red("[!] Error When Open xss/payload.txt ")))
+		fmt.Println(Bold(Red("[!] Error When Open cred/payload.txt ")))
 		return
 	}
 	defer file.Close()
@@ -31,6 +31,7 @@ func CheckCred(IsURL string) {
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
+	CheckWebServer(IsURL)
 	if isValidUrl(IsURL) {
 		for _, isPayload := range lines {
 			isCheckURL := IsURL + isPayload
@@ -44,6 +45,7 @@ func CheckCred(IsURL string) {
 				fmt.Println(Bold(Green("[+] Found URL ")), Bold(Green(isCheckURL)))
 			}
 		}
+		fmt.Println(Bold(Green("[+] Done !!")))
 
 	} else {
 		fmt.Println(Bold(Red("[+] Valid checking URL make sure URL valid Example : https://google.com")))
@@ -58,4 +60,14 @@ func isValidUrl(toTest string) bool {
 	} else {
 		return true
 	}
+}
+
+func CheckWebServer(IsURL string) {
+	response, err := http.Get(IsURL)
+	if err != nil {
+		fmt.Println(Bold(Red("[!] Cannot Parse Page")))
+		return
+	}
+	defer response.Body.Close()
+	fmt.Println(response.Header["Server"])
 }

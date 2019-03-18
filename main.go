@@ -6,12 +6,14 @@ import (
 	"Automation-Security/cred"
 	"Automation-Security/urls"
 	"Automation-Security/xss"
+	"Automation-Security/sql"
 	"flag"
 	"fmt"
 )
 
 type Input struct {
 	IsURL  string
+	
 	IsEnum string
 }
 
@@ -25,7 +27,11 @@ func (i Input) call() {
 		check.IsCheck(i.IsURL)
 	} else if i.IsEnum == "cred" {
 		cred.CheckCred(i.IsURL)
-	} else {
+	} else if  i.IsEnum == "sql"{
+		
+		sql.IsChekSQL(i.IsURL)
+
+	}else {
 		fmt.Println("[+] Opps Something Errors")
 	}
 }

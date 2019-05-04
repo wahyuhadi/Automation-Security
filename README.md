@@ -1,5 +1,4 @@
-## Golang Automation Security Check tiket
-
+## Golang Automation Security Check
 ### Feature
 1. Xss Detection in params
 2. Link Spiders
